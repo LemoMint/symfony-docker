@@ -62,12 +62,12 @@ RUN apt-get update \
     && echo "pm.max_requests=500" >> /usr/local/etc/php-fpm.conf \
     && echo "request_terminate_timeout=900s" >> /usr/local/etc/php-fpm.conf \
 
-COPY ./config/xdebug.ini "${PHP_INI_DIR}/conf.d"
+COPY ./dev/config/xdebug.ini "${PHP_INI_DIR}/conf.d"
 
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
 RUN apt install symfony-cli
 
-WORKDIR /var/www/parser
+WORKDIR /var/www/train_base
 
 RUN usermod -u 1000 www-data
 RUN chown 1000:www-data /var/www
