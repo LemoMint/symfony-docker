@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   php-fpm:
-    container_name: grant_admin_back
+    container_name: symfony_php
     build:
       context: ./../
       dockerfile: docker/php-fpm/Dockerfile
@@ -13,9 +13,9 @@ services:
     volumes:
       - ./../:/var/www
     environment:
-      PHP_IDE_CONFIG: "serverName=GrantAdmin"
+      PHP_IDE_CONFIG: "serverName=SymfonyDocker"
   nginx:
-    container_name: grant_admin_nginx
+    container_name: symfony_nginx
     build:
       context: ./nginx
     ports:
@@ -25,7 +25,7 @@ services:
     depends_on:
       - php-fpm
   postgres:
-    container_name: grant_admin_postgres
+    container_name: symfony_postgres
     build:
       context: ./postgres
     ports:
